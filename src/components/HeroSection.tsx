@@ -3,75 +3,137 @@ import { useMemo } from "react";
 import GhostIcon from "./GhostIcon";
 
 const HeroSection = () => {
-  const particles = useMemo(() =>
-    Array.from({ length: 20 }, (_, i) => ({
+  const embers = useMemo(() =>
+    Array.from({ length: 30 }, (_, i) => ({
       left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 6}s`,
-      duration: `${4 + Math.random() * 4}s`,
-      size: 2 + Math.random() * 3,
+      delay: `${Math.random() * 8}s`,
+      duration: `${3 + Math.random() * 5}s`,
+      size: 2 + Math.random() * 4,
+      startY: 80 + Math.random() * 20,
+    })), []
+  );
+
+  const orbs = useMemo(() =>
+    Array.from({ length: 5 }, (_, i) => ({
+      left: `${10 + Math.random() * 80}%`,
+      top: `${20 + Math.random() * 60}%`,
+      size: 200 + Math.random() * 300,
+      delay: `${Math.random() * 4}s`,
+      duration: `${6 + Math.random() * 6}s`,
     })), []
   );
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-16 md:pt-0">
-      {/* Smoke layers */}
+      {/* Deep radial gradient for depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(43_82%_46%/0.06)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(0_69%_32%/0.08)_0%,_transparent_50%)]" />
+
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_hsl(0_0%_4%/0.8)_100%)]" />
+
+      {/* Animated smoke/mist layers — now much more visible */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="smoke-layer-1 absolute bottom-0 left-1/4 w-96 h-96 bg-foreground/5 rounded-full blur-3xl" />
-        <div className="smoke-layer-2 absolute bottom-10 right-1/4 w-80 h-80 bg-foreground/3 rounded-full blur-3xl" />
-        <div className="smoke-layer-3 absolute bottom-20 left-1/2 w-72 h-72 bg-foreground/4 rounded-full blur-3xl" />
+        <div className="smoke-layer-1 absolute bottom-[-10%] left-[15%] w-[500px] h-[500px] bg-primary/[0.08] rounded-full blur-[100px]" />
+        <div className="smoke-layer-2 absolute bottom-[-5%] right-[10%] w-[400px] h-[400px] bg-secondary/[0.06] rounded-full blur-[80px]" />
+        <div className="smoke-layer-3 absolute bottom-[5%] left-[40%] w-[600px] h-[600px] bg-primary/[0.05] rounded-full blur-[120px]" />
+        <div className="smoke-layer-1 absolute top-[10%] right-[20%] w-[300px] h-[300px] bg-primary/[0.04] rounded-full blur-[80px]" style={{ animationDelay: "3s" }} />
       </div>
 
-      {/* Ghost silhouettes - hidden on mobile */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
-        <GhostIcon className="absolute top-[15%] left-[8%] w-20 h-20 text-primary/[0.03] animate-ghost-float" />
-        <GhostIcon className="absolute top-[25%] right-[10%] w-16 h-16 text-primary/[0.04] animate-ghost-float-reverse" />
-        <GhostIcon className="absolute bottom-[20%] left-[15%] w-12 h-12 text-primary/[0.03] animate-ghost-float" style={{ animationDelay: "3s" }} />
-        <GhostIcon className="absolute bottom-[30%] right-[20%] w-14 h-14 text-primary/[0.025] animate-ghost-float-reverse" style={{ animationDelay: "5s" }} />
-      </div>
-
-      {/* Floating particles */}
-      {particles.map((p, i) => (
+      {/* Floating golden orbs */}
+      {orbs.map((orb, i) => (
         <div
-          key={i}
-          className="absolute rounded-full bg-primary/15 animate-float-particle pointer-events-none"
-          style={{ left: p.left, top: p.top, width: p.size, height: p.size, animationDelay: p.delay, animationDuration: p.duration }}
+          key={`orb-${i}`}
+          className="absolute rounded-full pointer-events-none animate-orb-pulse"
+          style={{
+            left: orb.left,
+            top: orb.top,
+            width: orb.size,
+            height: orb.size,
+            background: `radial-gradient(circle, hsla(43, 82%, 46%, 0.06) 0%, transparent 70%)`,
+            animationDelay: orb.delay,
+            animationDuration: orb.duration,
+          }}
         />
       ))}
 
-      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-        {/* Animated ghost logo - smaller on mobile */}
+      {/* Rising embers/sparks */}
+      {embers.map((e, i) => (
+        <div
+          key={`ember-${i}`}
+          className="absolute rounded-full pointer-events-none animate-ember-rise"
+          style={{
+            left: e.left,
+            bottom: `-${e.size}px`,
+            width: e.size,
+            height: e.size,
+            background: `radial-gradient(circle, hsl(43 82% 56%) 0%, hsl(43 82% 46% / 0.6) 50%, transparent 100%)`,
+            boxShadow: `0 0 ${e.size * 2}px hsl(43 82% 46% / 0.4)`,
+            animationDelay: e.delay,
+            animationDuration: e.duration,
+          }}
+        />
+      ))}
+
+      {/* Ghost silhouettes - ethereal, not flat */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
+        <div className="absolute top-[12%] left-[6%] animate-ghost-float opacity-[0.06]">
+          <GhostIcon className="w-24 h-24 text-primary blur-[1px]" />
+        </div>
+        <div className="absolute top-[20%] right-[8%] animate-ghost-float-reverse opacity-[0.04]" style={{ animationDelay: "2s" }}>
+          <GhostIcon className="w-20 h-20 text-primary blur-[2px]" />
+        </div>
+        <div className="absolute bottom-[25%] left-[12%] animate-ghost-float opacity-[0.035]" style={{ animationDelay: "4s" }}>
+          <GhostIcon className="w-16 h-16 text-primary blur-[1px]" />
+        </div>
+        <div className="absolute bottom-[15%] right-[15%] animate-ghost-float-reverse opacity-[0.05]" style={{ animationDelay: "6s" }}>
+          <GhostIcon className="w-18 h-18 text-primary blur-[1px]" />
+        </div>
+      </div>
+
+      {/* Horizontal light streak */}
+      <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-light-sweep pointer-events-none" />
+
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Animated ghost logo with glow */}
         <div className="mb-4 md:mb-6 flex justify-center">
-          <GhostIcon className="w-10 h-10 md:w-16 md:h-16 text-primary animate-ghost-float ghost-glow" />
+          <div className="relative">
+            <GhostIcon className="w-12 h-12 md:w-20 md:h-20 text-primary animate-ghost-float relative z-10" />
+            <div className="absolute inset-0 w-12 h-12 md:w-20 md:h-20 bg-primary/20 rounded-full blur-xl animate-ghost-float" />
+          </div>
         </div>
 
-        <p className="text-primary text-[10px] md:text-xs tracking-[0.3em] uppercase mb-3 md:mb-6 font-body font-medium animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+        <p className="text-primary text-[10px] md:text-xs tracking-[0.35em] uppercase mb-4 md:mb-6 font-body font-medium animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           Now Open · 7:30 PM Onwards
         </p>
-        <h1 className="font-heading text-4xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight mb-4 md:mb-6 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+
+        <h1 className="font-heading text-[2.75rem] md:text-7xl lg:text-[5.5rem] font-bold text-foreground leading-[1.1] mb-5 md:mb-6 animate-fade-in-up hero-text-glow" style={{ animationDelay: "0.4s" }}>
           Where the Night<br />Gets Tasty.
         </h1>
-        <p className="text-muted-foreground text-base md:text-xl mb-6 md:mb-10 font-body font-light animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+
+        <p className="text-muted-foreground text-base md:text-xl mb-8 md:mb-10 font-body font-light animate-fade-in-up max-w-lg mx-auto" style={{ animationDelay: "0.6s" }}>
           Biryani. Kebabs. Unlimited. Every Night.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
-          <a href="#menu" className="bg-primary text-primary-foreground px-6 md:px-8 py-2.5 md:py-3 rounded font-medium text-sm tracking-wide hover:brightness-110 transition-all gold-glow-hover ghost-hover">
-            Explore Menu
+
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-10 md:mb-12 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+          <a href="#menu" className="group relative bg-primary text-primary-foreground px-8 md:px-10 py-3 md:py-3.5 rounded-lg font-semibold text-sm tracking-wide hover:brightness-110 transition-all overflow-hidden">
+            <span className="relative z-10">Explore Menu</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-yellow-500 to-primary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a href="tel:09133635504" className="border border-primary text-primary px-6 md:px-8 py-2.5 md:py-3 rounded font-medium text-sm tracking-wide gold-glow-hover hover:bg-primary hover:text-primary-foreground transition-all ghost-hover">
+          <a href="tel:09133635504" className="border border-primary/60 text-primary px-8 md:px-10 py-3 md:py-3.5 rounded-lg font-semibold text-sm tracking-wide hover:bg-primary/10 hover:border-primary transition-all backdrop-blur-sm">
             Call Now
           </a>
         </div>
 
-        {/* Rating badges */}
+        {/* Rating badges with subtle card style */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground animate-fade-in-up" style={{ animationDelay: "1s" }}>
           {[
             { name: "Google", rating: "4.0" },
             { name: "Zomato", rating: "3.7" },
             { name: "Justdial", rating: "4.0" },
           ].map(r => (
-            <div key={r.name} className="flex items-center gap-1">
-              <Star size={12} className="text-primary fill-primary md:w-3.5 md:h-3.5" />
+            <div key={r.name} className="flex items-center gap-1.5 bg-card/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-primary/10">
+              <Star size={12} className="text-primary fill-primary" />
               <span>{r.name} {r.rating}★</span>
             </div>
           ))}
@@ -79,9 +141,12 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll arrow */}
-      <button onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })} className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary/50 animate-bounce-arrow">
+      <button onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })} className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 text-primary/40 animate-bounce-arrow hover:text-primary/70 transition-colors">
         <ChevronDown size={28} />
       </button>
+
+      {/* Bottom fog */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
     </section>
   );
 };
