@@ -29,19 +29,19 @@ const Navigation = () => {
 
       <nav className={`fixed top-[30px] left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-primary/10" : "bg-transparent"}`}>
         <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
-          <button onClick={() => scrollTo("Home")} className="flex items-center gap-2 text-primary">
-            <GhostIcon className="w-8 h-8" />
-            <span className="font-heading text-xl font-semibold text-foreground">Mr. Ghost</span>
+          <button onClick={() => scrollTo("Home")} className="flex items-center gap-2 text-primary group">
+            <GhostIcon className="w-8 h-8 animate-ghost-float ghost-glow" />
+            <span className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">Mr. Ghost</span>
           </button>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-8">
             {links.map(l => (
-              <button key={l} onClick={() => scrollTo(l)} className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide">
+              <button key={l} onClick={() => scrollTo(l)} className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide ghost-hover-text">
                 {l}
               </button>
             ))}
-            <button onClick={() => scrollTo("Find Us")} className="border border-primary text-primary px-5 py-2 rounded text-sm font-medium gold-glow-hover hover:bg-primary hover:text-primary-foreground transition-all">
+            <button onClick={() => scrollTo("Find Us")} className="border border-primary text-primary px-5 py-2 rounded text-sm font-medium gold-glow-hover ghost-hover hover:bg-primary hover:text-primary-foreground transition-all">
               Reserve a Table
             </button>
           </div>
@@ -54,7 +54,7 @@ const Navigation = () => {
 
         {/* Mobile drawer */}
         {mobileOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-primary/10 px-6 pb-6">
+          <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-primary/10 px-6 pb-6 animate-fade-in">
             {links.map(l => (
               <button key={l} onClick={() => scrollTo(l)} className="block w-full text-left py-3 text-muted-foreground hover:text-primary transition-colors border-b border-primary/5">
                 {l}
@@ -72,7 +72,7 @@ const Navigation = () => {
         href="https://wa.me/919133635504"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 right-4 z-50 md:bottom-6 md:right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="fixed bottom-4 right-4 z-50 md:bottom-6 md:right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-ghost-pulse-subtle"
         aria-label="Chat on WhatsApp"
       >
         <svg viewBox="0 0 24 24" fill="white" className="w-7 h-7">
