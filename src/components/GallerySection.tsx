@@ -1,13 +1,18 @@
-import { Camera } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import galleryExterior from "@/assets/gallery-exterior.png";
+import galleryBiryaniSpread from "@/assets/gallery-biryani-spread.png";
+import galleryMuttonBiryani from "@/assets/gallery-mutton-biryani.png";
+import galleryKebabs from "@/assets/gallery-kebabs.png";
+import galleryNightAmbiance from "@/assets/gallery-night-ambiance.png";
+import gallerySignatureDish from "@/assets/gallery-signature-dish.png";
 
 const images = [
-  { label: "Biryani Spread", span: "row-span-2" },
-  { label: "Night Ambiance", span: "row-span-2" },
-  { label: "Live Counter", span: "" },
-  { label: "Happy Hours", span: "" },
-  { label: "Family Seating", span: "" },
-  { label: "Signature Dish", span: "" },
+  { label: "Biryani Spread", src: galleryBiryaniSpread, tall: true },
+  { label: "Night Ambiance", src: galleryNightAmbiance, tall: true },
+  { label: "The Entrance", src: galleryExterior, tall: false },
+  { label: "Tandoori Kebabs", src: galleryKebabs, tall: false },
+  { label: "Signature Dish", src: gallerySignatureDish, tall: false },
+  { label: "Mutton Biryani", src: galleryMuttonBiryani, tall: false },
 ];
 
 const GallerySection = () => (
@@ -20,13 +25,22 @@ const GallerySection = () => (
       </ScrollReveal>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] md:auto-rows-[200px]">
         {images.map((img, i) => (
-          <ScrollReveal key={i} className={img.span}>
-            <div className={`relative w-full h-full bg-muted rounded-lg overflow-hidden gold-glow-hover group cursor-pointer flex items-center justify-center transition-transform hover:scale-[1.02] ${img.span}`}
-              style={{ minHeight: img.span ? 370 : 180 }}
+          <ScrollReveal key={i} className={img.tall ? "row-span-2" : ""}>
+            <div
+              className={`relative w-full h-full rounded-lg overflow-hidden gold-glow-hover group cursor-pointer transition-transform hover:scale-[1.02] ${img.tall ? "row-span-2" : ""}`}
+              style={{ minHeight: img.tall ? 370 : 180 }}
             >
-              <div className="flex flex-col items-center gap-2 text-primary/40 group-hover:text-primary/70 transition-colors">
-                <Camera size={32} />
-                <span className="text-xs font-body tracking-wide text-muted-foreground">{img.label}</span>
+              <img
+                src={img.src}
+                alt={img.label}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              {/* Dark overlay with label */}
+              <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-all flex items-end p-4">
+                <span className="text-xs font-body tracking-wide text-foreground/80 bg-background/60 px-2 py-1 rounded backdrop-blur-sm">
+                  {img.label}
+                </span>
               </div>
             </div>
           </ScrollReveal>
@@ -34,7 +48,7 @@ const GallerySection = () => (
       </div>
       <ScrollReveal>
         <p className="text-muted-foreground/60 text-center text-sm mt-8">
-          📸 Real photos coming soon. Visit us tonight on Air Bypass Road, Tirupati.
+          📸 Visit us tonight on Air Bypass Road, Tirupati.
         </p>
       </ScrollReveal>
     </div>
