@@ -1,6 +1,6 @@
 import { Instagram } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import logoIcon from "@/assets/logo-icon.png";
+import logoIcon from "@/assets/logo-icon-clean.png";
 
 const CTASection = () => (
   <section className="py-16 md:py-24 relative overflow-hidden">
