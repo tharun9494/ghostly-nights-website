@@ -1,5 +1,5 @@
 import { Instagram } from "lucide-react";
-import GhostIcon from "./GhostIcon";
+import logoIcon from "@/assets/logo-icon.png";
 
 const links = ["Home", "About", "Menu", "Gallery", "Reviews", "Find Us"];
 
@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start text-center md:text-left">
           <div className="flex items-center gap-3 justify-center md:justify-start">
-            <GhostIcon className="w-7 h-7 md:w-8 md:h-8 text-primary animate-ghost-float" />
+            <img src={logoIcon} alt="Mr. Ghost" className="w-9 h-9 md:w-10 md:h-10 object-contain" />
             <div>
               <span className="font-heading text-base md:text-lg font-semibold text-foreground">Mr. Ghost Restaurant</span>
               <p className="text-muted-foreground text-[10px] md:text-xs mt-1">The Night Comes Alive. So Does the Biryani.</p>

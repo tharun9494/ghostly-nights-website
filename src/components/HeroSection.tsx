@@ -1,6 +1,7 @@
 import { ChevronDown, Star } from "lucide-react";
 import { useMemo } from "react";
-import GhostIcon from "./GhostIcon";
+import logoIcon from "@/assets/logo-icon.png";
+import logoFull from "@/assets/logo-full.png";
 
 const HeroSection = () => {
   const embers = useMemo(() =>
@@ -9,7 +10,6 @@ const HeroSection = () => {
       delay: `${Math.random() * 8}s`,
       duration: `${3 + Math.random() * 5}s`,
       size: 2 + Math.random() * 4,
-      startY: 80 + Math.random() * 20,
     })), []
   );
 
@@ -32,7 +32,7 @@ const HeroSection = () => {
       {/* Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_hsl(0_0%_4%/0.8)_100%)]" />
 
-      {/* Animated smoke/mist layers — now much more visible */}
+      {/* Animated smoke/mist layers */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="smoke-layer-1 absolute bottom-[-10%] left-[15%] w-[500px] h-[500px] bg-primary/[0.08] rounded-full blur-[100px]" />
         <div className="smoke-layer-2 absolute bottom-[-5%] right-[10%] w-[400px] h-[400px] bg-secondary/[0.06] rounded-full blur-[80px]" />
@@ -75,31 +75,15 @@ const HeroSection = () => {
         />
       ))}
 
-      {/* Ghost silhouettes - ethereal, not flat */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
-        <div className="absolute top-[12%] left-[6%] animate-ghost-float opacity-[0.06]">
-          <GhostIcon className="w-24 h-24 text-primary blur-[1px]" />
-        </div>
-        <div className="absolute top-[20%] right-[8%] animate-ghost-float-reverse opacity-[0.04]" style={{ animationDelay: "2s" }}>
-          <GhostIcon className="w-20 h-20 text-primary blur-[2px]" />
-        </div>
-        <div className="absolute bottom-[25%] left-[12%] animate-ghost-float opacity-[0.035]" style={{ animationDelay: "4s" }}>
-          <GhostIcon className="w-16 h-16 text-primary blur-[1px]" />
-        </div>
-        <div className="absolute bottom-[15%] right-[15%] animate-ghost-float-reverse opacity-[0.05]" style={{ animationDelay: "6s" }}>
-          <GhostIcon className="w-18 h-18 text-primary blur-[1px]" />
-        </div>
-      </div>
-
       {/* Horizontal light streak */}
       <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-light-sweep pointer-events-none" />
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Animated ghost logo with glow */}
+        {/* Real logo with glow */}
         <div className="mb-4 md:mb-6 flex justify-center">
           <div className="relative">
-            <GhostIcon className="w-12 h-12 md:w-20 md:h-20 text-primary animate-ghost-float relative z-10" />
-            <div className="absolute inset-0 w-12 h-12 md:w-20 md:h-20 bg-primary/20 rounded-full blur-xl animate-ghost-float" />
+            <img src={logoFull} alt="Mr. Ghost Restaurant" className="w-48 h-auto md:w-72 animate-ghost-float relative z-10 drop-shadow-[0_0_20px_hsla(15,80%,50%,0.4)]" />
+            <div className="absolute inset-0 bg-secondary/15 rounded-full blur-3xl animate-ghost-float" />
           </div>
         </div>
 
@@ -125,7 +109,7 @@ const HeroSection = () => {
           </a>
         </div>
 
-        {/* Rating badges with subtle card style */}
+        {/* Rating badges */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground animate-fade-in-up" style={{ animationDelay: "1s" }}>
           {[
             { name: "Google", rating: "4.0" },

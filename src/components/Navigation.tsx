@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import GhostIcon from "./GhostIcon";
 import { Menu, X } from "lucide-react";
+import logoIcon from "@/assets/logo-icon.png";
 
 const links = ["Home", "About", "Menu", "Gallery", "Reviews", "Find Us"];
 
@@ -22,7 +22,7 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Demo banner - compact on mobile */}
+      {/* Demo banner */}
       <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground text-center text-[10px] md:text-xs py-1 md:py-1.5 px-4 font-body leading-tight">
         <span className="hidden md:inline">Demo Website — All data, prices &amp; photos taken from your Google Maps listing. Final version will use your own photos &amp; can be updated anytime.</span>
         <span className="md:hidden">Demo Website — Data &amp; photos from Google Maps. Final version fully customizable.</span>
@@ -30,8 +30,8 @@ const Navigation = () => {
 
       <nav className={`fixed top-[24px] md:top-[30px] left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-primary/10" : "bg-transparent"}`}>
         <div className="container mx-auto flex items-center justify-between py-3 md:py-4 px-4 md:px-8">
-          <button onClick={() => scrollTo("Home")} className="flex items-center gap-2 text-primary group">
-            <GhostIcon className="w-7 h-7 md:w-8 md:h-8 animate-ghost-float ghost-glow" />
+          <button onClick={() => scrollTo("Home")} className="flex items-center gap-2 group">
+            <img src={logoIcon} alt="Mr. Ghost" className="w-9 h-9 md:w-10 md:h-10 object-contain drop-shadow-[0_0_8px_hsla(15,80%,50%,0.3)]" />
             <span className="font-heading text-lg md:text-xl font-semibold text-foreground group-hover:text-primary transition-colors">Mr. Ghost</span>
           </button>
 
