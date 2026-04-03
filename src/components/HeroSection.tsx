@@ -1,5 +1,6 @@
 import { ChevronDown, Star } from "lucide-react";
 import { useMemo } from "react";
+import GhostIcon from "./GhostIcon";
 
 const HeroSection = () => {
   const particles = useMemo(() =>
@@ -21,6 +22,14 @@ const HeroSection = () => {
         <div className="smoke-layer-3 absolute bottom-20 left-1/2 w-72 h-72 bg-foreground/4 rounded-full blur-3xl" />
       </div>
 
+      {/* Ghost silhouettes in background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <GhostIcon className="absolute top-[15%] left-[8%] w-20 h-20 text-primary/[0.03] animate-ghost-float" />
+        <GhostIcon className="absolute top-[25%] right-[10%] w-16 h-16 text-primary/[0.04] animate-ghost-float-reverse" />
+        <GhostIcon className="absolute bottom-[20%] left-[15%] w-12 h-12 text-primary/[0.03] animate-ghost-float" style={{ animationDelay: "3s" }} />
+        <GhostIcon className="absolute bottom-[30%] right-[20%] w-14 h-14 text-primary/[0.025] animate-ghost-float-reverse" style={{ animationDelay: "5s" }} />
+      </div>
+
       {/* Floating particles */}
       {particles.map((p, i) => (
         <div
@@ -31,26 +40,31 @@ const HeroSection = () => {
       ))}
 
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-        <p className="text-primary text-xs tracking-[0.3em] uppercase mb-6 font-body font-medium">
+        {/* Animated ghost logo */}
+        <div className="mb-6 flex justify-center">
+          <GhostIcon className="w-16 h-16 text-primary animate-ghost-float ghost-glow" />
+        </div>
+
+        <p className="text-primary text-xs tracking-[0.3em] uppercase mb-6 font-body font-medium animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           Now Open · 7:30 PM Onwards
         </p>
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight mb-6">
+        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           Where the Night<br />Gets Tasty.
         </h1>
-        <p className="text-muted-foreground text-lg md:text-xl mb-10 font-body font-light">
+        <p className="text-muted-foreground text-lg md:text-xl mb-10 font-body font-light animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
           Biryani. Kebabs. Unlimited. Every Night.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a href="#menu" className="bg-primary text-primary-foreground px-8 py-3 rounded font-medium text-sm tracking-wide hover:brightness-110 transition-all gold-glow-hover">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+          <a href="#menu" className="bg-primary text-primary-foreground px-8 py-3 rounded font-medium text-sm tracking-wide hover:brightness-110 transition-all gold-glow-hover ghost-hover">
             Explore Menu
           </a>
-          <a href="tel:09133635504" className="border border-primary text-primary px-8 py-3 rounded font-medium text-sm tracking-wide gold-glow-hover hover:bg-primary hover:text-primary-foreground transition-all">
+          <a href="tel:09133635504" className="border border-primary text-primary px-8 py-3 rounded font-medium text-sm tracking-wide gold-glow-hover hover:bg-primary hover:text-primary-foreground transition-all ghost-hover">
             Call Now
           </a>
         </div>
 
         {/* Rating badges */}
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+        <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground animate-fade-in-up" style={{ animationDelay: "1s" }}>
           {[
             { name: "Google", rating: "4.0" },
             { name: "Zomato", rating: "3.7" },

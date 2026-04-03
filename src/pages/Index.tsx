@@ -8,9 +8,11 @@ import LocationSection from "@/components/LocationSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import MobileCallCTA from "@/components/MobileCallCTA";
+import FloatingGhosts from "@/components/FloatingGhosts";
 
 const Index = () => (
   <div className="min-h-screen bg-background">
+    <FloatingGhosts />
     <Navigation />
     <HeroSection />
     <AboutSection />

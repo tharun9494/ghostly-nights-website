@@ -1,4 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
+import GhostIcon from "./GhostIcon";
 
 const stats = [
   { icon: "👻", title: "Night Only", desc: "Opens at 7:30 PM" },
@@ -7,9 +8,12 @@ const stats = [
 ];
 
 const AboutSection = () => (
-  <section id="about" className="py-24 bg-background">
+  <section id="about" className="py-24 bg-background relative overflow-hidden">
+    {/* Background ghost watermark */}
+    <GhostIcon className="absolute -right-10 top-1/2 -translate-y-1/2 w-64 h-64 text-primary/[0.02] animate-ghost-float" />
+
     <div className="section-divider container mx-auto mb-24" />
-    <div className="container mx-auto px-4 md:px-8">
+    <div className="container mx-auto px-4 md:px-8 relative z-10">
       <ScrollReveal>
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-16 text-center">
           The Ghost Story
@@ -27,9 +31,9 @@ const AboutSection = () => (
         <div className="grid gap-4">
           {stats.map((s, i) => (
             <ScrollReveal key={i}>
-              <div className="bg-card p-6 rounded-lg border-t-2 border-primary gold-glow-hover cursor-default">
+              <div className="bg-card p-6 rounded-lg border-t-2 border-primary gold-glow-hover ghost-hover cursor-default group">
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl">{s.icon}</span>
+                  <span className="text-3xl group-hover:animate-ghost-wiggle transition-transform">{s.icon}</span>
                   <div>
                     <h3 className="font-heading text-xl font-semibold text-foreground">{s.title}</h3>
                     <p className="text-muted-foreground text-sm">{s.desc}</p>
