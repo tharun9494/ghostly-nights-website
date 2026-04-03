@@ -1,7 +1,7 @@
 import { ChevronDown, Star } from "lucide-react";
 import { useMemo } from "react";
-import logoIcon from "@/assets/logo-icon.png";
-import logoFull from "@/assets/logo-full.png";
+import logoIcon from "@/assets/logo-icon-clean.png";
+import logoFull from "@/assets/logo-full-clean.png";
 
 const HeroSection = () => {
   const embers = useMemo(() =>

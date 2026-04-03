@@ -1,5 +1,5 @@
 import { Instagram } from "lucide-react";
-import logoIcon from "@/assets/logo-icon.png";
+import logoIcon from "@/assets/logo-icon-clean.png";
 
 const links = ["Home", "About", "Menu", "Gallery", "Reviews", "Find Us"];
 
