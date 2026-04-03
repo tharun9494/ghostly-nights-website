@@ -3,7 +3,7 @@ import ScrollReveal from "./ScrollReveal";
 import GhostIcon from "./GhostIcon";
 
 const CTASection = () => (
-  <section className="py-24 relative overflow-hidden">
+  <section className="py-16 md:py-24 relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background pointer-events-none" />
     
     {/* Haunted mist */}
@@ -11,25 +11,25 @@ const CTASection = () => (
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary/[0.03] to-transparent animate-mist-pulse" />
     </div>
 
-    {/* Ghost silhouettes */}
-    <GhostIcon className="absolute left-[5%] top-[20%] w-24 h-24 text-primary/[0.03] animate-ghost-float" />
-    <GhostIcon className="absolute right-[8%] bottom-[15%] w-20 h-20 text-primary/[0.025] animate-ghost-float-reverse" style={{ animationDelay: "2s" }} />
+    {/* Ghost silhouettes - hidden on mobile */}
+    <GhostIcon className="absolute left-[5%] top-[20%] w-24 h-24 text-primary/[0.03] animate-ghost-float hidden md:block" />
+    <GhostIcon className="absolute right-[8%] bottom-[15%] w-20 h-20 text-primary/[0.025] animate-ghost-float-reverse hidden md:block" style={{ animationDelay: "2s" }} />
 
     <div className="relative z-10 container mx-auto px-4 text-center">
       <ScrollReveal>
-        <GhostIcon className="w-12 h-12 text-primary mx-auto mb-6 animate-ghost-float ghost-glow" />
-        <h2 className="font-heading text-4xl md:text-6xl font-bold text-foreground mb-6">
+        <GhostIcon className="w-10 h-10 md:w-12 md:h-12 text-primary mx-auto mb-4 md:mb-6 animate-ghost-float ghost-glow" />
+        <h2 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-4 md:mb-6">
           Tonight's Table is Waiting.
         </h2>
-        <p className="text-muted-foreground text-lg mb-10 max-w-md mx-auto">
+        <p className="text-muted-foreground text-base md:text-lg mb-8 md:mb-10 max-w-md mx-auto">
           Walk in after 7:30 PM. No booking needed. Just bring your hunger.
         </p>
-        <a href="tel:09133635504" className="inline-block bg-primary text-primary-foreground px-10 py-4 rounded text-lg font-medium gold-glow-hover ghost-hover hover:brightness-110 transition-all mb-8">
+        <a href="tel:09133635504" className="inline-block bg-primary text-primary-foreground px-8 md:px-10 py-3 md:py-4 rounded text-base md:text-lg font-medium gold-glow-hover ghost-hover hover:brightness-110 transition-all mb-6 md:mb-8">
           Call Now — 091336 35504
         </a>
         <div>
-          <a href="#" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm">
-            <Instagram size={18} /> @mrghostrestaurant
+          <a href="#" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-xs md:text-sm">
+            <Instagram size={16} /> @mrghostrestaurant
           </a>
         </div>
       </ScrollReveal>

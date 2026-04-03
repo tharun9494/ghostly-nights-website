@@ -2,17 +2,17 @@ import { useMemo } from "react";
 
 const FloatingGhosts = () => {
   const ghosts = useMemo(() =>
-    Array.from({ length: 6 }, (_, i) => ({
-      left: `${10 + Math.random() * 80}%`,
+    Array.from({ length: 4 }, (_, i) => ({
+      left: `${15 + Math.random() * 70}%`,
       delay: `${Math.random() * 8}s`,
-      duration: `${10 + Math.random() * 8}s`,
-      size: 16 + Math.random() * 24,
-      opacity: 0.03 + Math.random() * 0.05,
+      duration: `${12 + Math.random() * 8}s`,
+      size: 18 + Math.random() * 20,
+      opacity: 0.02 + Math.random() * 0.03,
     })), []
   );
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden hidden md:block">
       {ghosts.map((g, i) => (
         <svg
           key={i}
